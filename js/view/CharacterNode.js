@@ -11,7 +11,7 @@ define( function( require ) {
   function CharacterNode( image ) {
 
     var characterNode = this;
-    Node.call( this );
+    Node.call( this, {renderer: 'svg', rendererOptions: {cssTransform: true}} );
 
     var sources = {};
     var numSources = 0;
