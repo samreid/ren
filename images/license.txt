@@ -1,0 +1,1 @@
+Vikings_*.png source=http://rpg.hamsterrepublic.com/wiki-images/e/ea/Vikings_tilemaps_003.bmp etc notes=Fenrir's Vikings of Midgard license=public domain
