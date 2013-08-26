@@ -8,7 +8,7 @@ define( function( require ) {
   var images = require( 'ren-images' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
-  function CharacterNode( image ) {
+  function CharacterNode( characterModel, image ) {
 
     var characterNode = this;
     Node.call( this, {renderer: 'svg', rendererOptions: {cssTransform: true}} );
@@ -56,10 +56,21 @@ define( function( require ) {
     this.addInputListener( listener );
 
     var finishInit = function() {
-      var grass = getTile( 4, 0 );
-      var leaves = getTile( 5, 0 );
-      var path = getTile( 6, 0 );
-      characterNode.addChild( grass );
+      var forward1 = getTile( 4, 0 );
+      var forward2 = getTile( 5, 0 );
+      characterNode.addChild( forward1 );
+      characterNode.addChild( forward2 );
+      characterModel.model.timeProperty.link( function( time ) {
+        var timefloor = Math.floor( time * 1.5 );
+        if ( timefloor % 2 === 0 ) {
+          forward1.visible = true;
+          forward2.visible = false;
+        }
+        else {
+          forward1.visible = false;
+          forward2.visible = true;
+        }
+      } );
     };
   }
 

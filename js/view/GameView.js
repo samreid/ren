@@ -73,7 +73,7 @@ define( function( require ) {
       }
       background.toImage( function( image ) {
         gameView.addChild( new Image( image, {scale: 2} ) );
-        var characterNode = new CharacterNode( images.getImage( 'Vikings_walkabout_088.png' ) );
+        var characterNode = new CharacterNode( model.player, images.getImage( 'Vikings_walkabout_088.png' ) );
         gameView.addChild( characterNode );
       } );
     };
