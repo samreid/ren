@@ -13,7 +13,7 @@ require( [
 ], function( Game, SimLauncher, images, GameModel, GameView, Rectangle ) {
   'use strict';
 
-  SimLauncher.launch( images, function() {
+  SimLauncher.launch( function() {
     new Game( 'game', [
       {
         name: 'game',
