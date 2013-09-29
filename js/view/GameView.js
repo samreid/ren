@@ -5,17 +5,16 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var images = require( 'ren-images' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var CharacterNode = require( 'view/CharacterNode' );
+  var tileMap = require( 'image!REN/../images/Vikings_tilemaps_003.png' );
+  var walkaboutImage = require( 'image!REN/../images/Vikings_walkabout_088.png' )
 
   function GameView( model ) {
 
     var gameView = this;
     ScreenView.call( this, {renderer: 'svg', rendererOptions: {cssTransform: true}} );
-
-    var tileMap = images.getImage( 'Vikings_tilemaps_003.png' );
 
     var sources = {};
     var numSources = 0;
@@ -73,7 +72,7 @@ define( function( require ) {
       }
       background.toImage( function( image ) {
         gameView.addChild( new Image( image, {scale: 2} ) );
-        var characterNode = new CharacterNode( model.player, images.getImage( 'Vikings_walkabout_088.png' ) );
+        var characterNode = new CharacterNode( model.player, walkaboutImage );
         gameView.addChild( characterNode );
       } );
     };

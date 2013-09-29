@@ -6,11 +6,10 @@
 require( [
   'Game',
   'JOIST/SimLauncher',
-  'ren-images',
   'model/GameModel',
   'view/GameView',
   'SCENERY/nodes/Rectangle'
-], function( Game, SimLauncher, images, GameModel, GameView, Rectangle ) {
+], function( Game, SimLauncher, GameModel, GameView, Rectangle ) {
   'use strict';
 
   SimLauncher.launch( function() {

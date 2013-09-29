@@ -11,6 +11,7 @@ require.config( {
     PHET_CORE: '../../phet-core/js',
     SUN: '../../sun/js',
     JOIST: '../../joist/js',
+    REN: '.',
 
     // plugins
     i18n: '../../sherpa/i18n-2.0.4',

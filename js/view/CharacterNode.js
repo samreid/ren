@@ -5,7 +5,6 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var images = require( 'ren-images' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   function CharacterNode( characterModel, image ) {
