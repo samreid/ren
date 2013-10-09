@@ -8,8 +8,8 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var CharacterNode = require( 'view/CharacterNode' );
-  var tileMap = require( 'image!REN/../images/Vikings_tilemaps_003.png' );
-  var walkaboutImage = require( 'image!REN/../images/Vikings_walkabout_088.png' )
+  var tileMap = require( 'image!REN/Vikings_tilemaps_003.png' );
+  var walkaboutImage = require( 'image!REN/Vikings_walkabout_088.png' )
 
   function GameView( model ) {
 
