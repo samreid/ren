@@ -18,7 +18,6 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
 
   //For Data logging and visualization
-  var log = require( 'AXON/log' );
   var LogPointers = require( 'JOIST/share/LogPointers' );
 
   /**
