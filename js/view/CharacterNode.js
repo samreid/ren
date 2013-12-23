@@ -48,8 +48,12 @@ define( function( require ) {
     this.touchArea = this.mouseArea = Shape.rect( 0, 0, 1024, 768 );
     var listener = new SimpleDragHandler( {
       allowTouchSnag: true,
-//      translate: function( options ) {},
-      start: function() {},
+      translate: function( options ) {
+        console.log( 'dragged characetr' )
+      },
+      start: function() {
+        console.log( 'd;' );
+      },
       end: function() { }
     } );
     this.addInputListener( listener );

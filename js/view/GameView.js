@@ -9,12 +9,12 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var CharacterNode = require( 'view/CharacterNode' );
   var tileMap = require( 'image!REN/Vikings_tilemaps_003.png' );
-  var walkaboutImage = require( 'image!REN/Vikings_walkabout_088.png' )
+  var walkaboutImage = require( 'image!REN/Vikings_walkabout_088.png' );
 
   function GameView( model ) {
 
     var gameView = this;
-    ScreenView.call( this, {renderer: 'svg', rendererOptions: {cssTransform: true}} );
+    ScreenView.call( this, {renderer: 'svg'} );
 
     var sources = {};
     var numSources = 0;
@@ -50,20 +50,13 @@ define( function( require ) {
     var getTile = function( i, j ) { return sources[toKey( i, j ) ]; };
 
     this.touchArea = this.mouseArea = Shape.rect( 0, 0, 1024, 768 );
-    var listener = new SimpleDragHandler( {
-      allowTouchSnag: true,
-//      translate: function( options ) {},
-      start: function() {},
-      end: function() { }
-    } );
-    this.addInputListener( listener );
 
     var finishInit = function() {
 
       var grass = getTile( 0, 0 );
       var leaves = getTile( 5, 1 );
       var path = getTile( 5, 6 );
-      var background = new Node( {pickable: false} );
+      var background = new Node( {pickable: true, cursor: 'pointer'} );
       for ( var i = 0; i < 30; i++ ) {
         for ( var k = 0; k < 15; k++ ) {
           var node = new Node( {children: [grass], x: i * 20, y: k * 20} );
@@ -71,13 +64,21 @@ define( function( require ) {
         }
       }
       background.toImage( function( image ) {
-        gameView.addChild( new Image( image, {scale: 2} ) );
+        var bufferedBackground = new Image( image, {scale: 2} );
+
+        var listener = new SimpleDragHandler( {
+          allowTouchSnag: true,
+          translate: function() {
+            console.log( 't)' );
+          }
+        } );
+        bufferedBackground.addInputListener( listener );
+        gameView.addChild( bufferedBackground );
+
         var characterNode = new CharacterNode( model.player, walkaboutImage );
         gameView.addChild( characterNode );
       } );
     };
-
-
   }
 
   return inherit( ScreenView, GameView );

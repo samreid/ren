@@ -17,9 +17,6 @@ define( function( require ) {
   var version = require( 'version' );
   var PropertySet = require( 'AXON/PropertySet' );
 
-  //For Data logging and visualization
-  var LogPointers = require( 'JOIST/share/LogPointers' );
-
   /**
    * @param {String} name
    * @param {Array<Screen>} screens
@@ -300,44 +297,44 @@ define( function( require ) {
     })();
   };
 
-  Game.prototype.startPlayback = function( logArray ) {
-    var sim = this;
-    var logIndex = 0;
-    var playbackTime = logArray[0].time;
-
-    //Make sure requestAnimationFrame is defined
-    Util.polyfillRequestAnimationFrame();
-
-    //Display the pointers
-//    new LogPointers().showPointers();
-    var totalTime = 0;
-
-    // place the rAF *before* the render() to assure as close to 60fps with the setTimeout fallback.
-    //http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-    (function animationLoop() {
-      if ( logIndex >= logArray.length ) {
-        console.log( totalTime );
-
-        sim.scene.addChild( new Text( 'Elapsed time (ms): ' + totalTime, {x: 100, y: 100, font: '32px Arial'} ) );
-        sim.scene.updateScene();
-        return;
-      }
-
-      window.requestAnimationFrame( animationLoop );
-
-      var start = Date.now();
-      //Update the sim based on the given log
-      logIndex = log.stepUntil( logArray, playbackTime, logIndex );
-
-      playbackTime += 17;//ms between frames at 60fp
-
-      sim.scene.updateScene();
-      var stop = Date.now();
-      var elapsed = (stop - start);
-
-      totalTime += elapsed;
-    })();
-  };
+//  Game.prototype.startPlayback = function( logArray ) {
+//    var sim = this;
+//    var logIndex = 0;
+//    var playbackTime = logArray[0].time;
+//
+//    //Make sure requestAnimationFrame is defined
+//    Util.polyfillRequestAnimationFrame();
+//
+//    //Display the pointers
+////    new LogPointers().showPointers();
+//    var totalTime = 0;
+//
+//    // place the rAF *before* the render() to assure as close to 60fps with the setTimeout fallback.
+//    //http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+//    (function animationLoop() {
+//      if ( logIndex >= logArray.length ) {
+//        console.log( totalTime );
+//
+//        sim.scene.addChild( new Text( 'Elapsed time (ms): ' + totalTime, {x: 100, y: 100, font: '32px Arial'} ) );
+//        sim.scene.updateScene();
+//        return;
+//      }
+//
+//      window.requestAnimationFrame( animationLoop );
+//
+//      var start = Date.now();
+//      //Update the sim based on the given log
+//      logIndex = log.stepUntil( logArray, playbackTime, logIndex );
+//
+//      playbackTime += 17;//ms between frames at 60fp
+//
+//      sim.scene.updateScene();
+//      var stop = Date.now();
+//      var elapsed = (stop - start);
+//
+//      totalTime += elapsed;
+//    })();
+//  };
 
   // Plays back input events and updateScene() loops based on recorded data. data should be an array of objects (representing frames) with dt and fireEvents( scene, dot )
   Game.prototype.startInputEventPlayback = function( data ) {
