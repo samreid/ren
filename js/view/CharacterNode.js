@@ -10,7 +10,7 @@ define( function( require ) {
   function CharacterNode( characterModel, image ) {
 
     var characterNode = this;
-    Node.call( this, {renderer: 'svg', rendererOptions: {cssTransform: true}} );
+    Node.call( this, {renderer: 'svg', cursor: 'pointer'} );
 
     var sources = {};
     var numSources = 0;
@@ -45,11 +45,22 @@ define( function( require ) {
 
     var getTile = function( i, j ) { return sources[toKey( i, j ) ]; };
 
+
+    characterModel.on( 'moved', function() {
+      characterNode.setTranslation( characterModel.x, characterModel.y );
+    } );
     this.touchArea = this.mouseArea = Shape.rect( 0, 0, 1024, 768 );
     var listener = new SimpleDragHandler( {
       allowTouchSnag: true,
-      translate: function( options ) {
-        console.log( 'dragged characetr' )
+      translate: function( args ) {
+        characterModel.x = characterModel.x + args.delta.x;
+        characterModel.y = characterModel.y + args.delta.y;
+        characterModel.trigger( 'moved' );
+      },
+      drag: function( event, trail ) {
+//        characterModel.x = event.pointer.point.x;
+//        characterModel.y = event.pointer.point.y;
+//        characterModel.trigger( 'moved' );
       },
       start: function() {
         console.log( 'd;' );
