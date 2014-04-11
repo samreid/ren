@@ -4,6 +4,7 @@ require.config( {
   paths: {
     ASSERT: '../../assert/js',
     AXON: '../../axon/js',
+    BRAND: '../../brand/js',
     DOT: '../../dot/js',
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
